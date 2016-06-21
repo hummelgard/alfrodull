@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+<H2>Projektkostnader</H2>
+
+<table style="width:100%">
+  <tr>
+  <th class="la">Datum</th><th class="la">Pryl</th><th class="la">Leverantör</th><th>Pris(SEK)</th><th>Projektsumma (SEK)</th><th>Förlustsumma (SEK)</th></tr>
+  <tr><td class="la">2015-06-01</td><td class="la"><del>Raspberry A+</td><td class="la">Kjell & Co</td><td>249</td><td>249</td><td>249</td></tr>
+  <tr><td class="la">2015-06-01</td><td class="la"><del>LM2596 regulator</td><td class="la">Kjell & Co</td><td>50</td><td>299</td><td>299</td></tr>
+  <tr><td class="la">2015-10-27</td><td class="la">BME-280 sensor</td><td class="la">Lawicel AB</td><td>219</td><td>518</td><td></td></tr>
+  <tr><td class="la">2016-03-28</td><td class="la"><del>Solcell 6W</td><td class="la">Biltema</td><td>369</td><td>887</td><td>668</td></tr>
+  <tr><td class="la">2016-03-28</td><td class="la"><del>Laddregulator</td><td class="la">Biltema</td><td>179</td><td>1066</td><td>847</td></tr>
+  <tr><td class="la">2016-03-28</td><td class="la">Batteri 12V, 18Ah</td><td class="la">Biltema</td><td>499</td><td>1565</td><td></td></tr>
+  <tr><td class="la">2016-04-01</td><td class="la">INA-219 sensor</td><td class="la">m punkt nu Sverige AB</td><td>129</td><td>1943</td><td></td></tr>
+  <tr><td class="la">2016-04-01</td><td class="la">TSL-2591 sensor</td><td class="la">m punkt nu Sverige AB</td><td>89</td><td>2032</td><td></td></tr>
+  <tr><td class="la">2016-04-04</td><td class="la">Solcell 30W</td><td class="la">Clas Ohlsson</td><td>999</td><td>2782</td><td></td></tr>
+  <tr><td class="la">2016-04-05</td><td class="la">D24V5F5 regulator</td><td class="la">Lawicel AB</td><td>54</td><td>2836</td><td></td></tr>
+  <tr><td class="la">2016-04-14</td><td class="la"><del>Relämodul 5VDC</td><td class="la">Lawicel AB</td><td>39</td><td>2875</td><td>2071</td></tr>
+  <tr><td class="la">2016-06-07</td><td class="la">Bistabilt relä</td><td class="la">m.nu</td><td>85</td><td>2960</td><td></td></tr>
+  <tr><td class="la">2016-06-07</td><td class="la">Raspberry zero</td><td class="la">Pimoroni</td><td>157</td><td>3117</td><td></td></tr>
+</table>
+<hr>
+<hr>
+<H2>Projektrapporter</H2>
+<table style="width:100%">
+  <tr>
+  <th class="la">Datum</th><th class="la">Rapportnamn</th></tr>
+  <tr><td class="la">2016-04-01</td><td class="la"><a href={{ url_for('static', filename='pi3-rapport1.pdf') }}>1: utvärdering wifi-dongles effektförbrukning samt HDMI (PDF)</a></td><tr>
+  <tr><td class="la">2016-04-05</td><td class="la"><a href={{ url_for('static', filename='pi3-rapport2.pdf') }}>2: utvärdering solcell 6W (PDF)</a></td><tr>
+  <tr><td class="la">2016-04-06</td><td class="la"><a href={{ url_for('static', filename='pi3-rapport3.pdf') }}>3: utvärdering regulator D24V5F5 (PDF)</a></td><tr>
+  <tr><td class="la">2016-04-17</td><td class="la"><a href={{ url_for('static', filename='pi3-rapport4.pdf') }}>4: uppmätninga av batteriets kapacitet och spänningskurva (PDF)</a></td><tr>
+  <tr><td class="la">2016-04-18</td><td class="la"><a href={{ url_for('static', filename='pi3-rapport5.pdf') }}>5: Utvärdering av relä mot laddregulator (PDF)</a></td><tr>
+  <tr><td class="la">2016-06-21</td><td class="la"><a href={{ url_for('static', filename='pi3-rapport6.pdf') }}>6: Utvärdering av rasperry zero mot A+ (PDF)</a></td><tr>
+</table>
+{% endblock %}
+

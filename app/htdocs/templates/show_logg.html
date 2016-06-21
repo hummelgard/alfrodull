@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block body %}
+<H2>Logg över händelser</H2>
+<H4 class="logg">Den 20 juni 2016</H4>
+Raspberry Zero monterad tillsammans med bistabilt relä som ersätter det gamla reläet. Sync mot github startad.
+<hr>
+<H4 class="logg">Den 10 juni 2016</H4>
+Ny raspberry A+ dator trasig vid leverans. Beställt raspberry Zero.
+<hr>
+<H4 class="logg">Den 8 juni 2016</H4>
+Montering av bistabilt relä orsakade kortslutning av GPIO-porten, raspberry A+ dator förstörd, ny beställd.
+<hr>
+<H4 class="logg">Den 25 april 2016</H4>
+Tunnfilmssolcell 6W inkopplad för nytt test kl 11:22. Ymnigt snöfall ute med 3200 lux på solcell. Test avslutat 12.04. Kisel ger 1.4W som är 9 ggr mer effekt än tunnfilmscellen 0.15W, vilket är högre än respketive märkeffekt, 6W mot 30W.
+<hr>
+<H4 class="logg">Den 23 april 2016</H4>
+Förenklad backup gjord genom kopiering av /srv/http katalog.
+<hr>
+<H4 class="logg">Den 22 april 2016</H4>
+Prognos över solsken från yr.no tillagt.
+<hr>
+<H4 class="logg">Den 21 april 2016</H4>
+Kört turbo mode på cpu sedan igår kl. 8, verkar ge brus på data från BME-280 sensorn.Turbo avslaget kl. 19 idag.
+<hr>
+<H4 class="logg">Den 17 april 2016</H4>
+Test av batterikapacitet klart. Laddregulator utbytt mot relä. Lagt till funktionen att via websocket kontrollera parametrar i en settings.txt fil. Förenklad backup gjord genom kopiering av /srv/http katalog.
+<hr>
+<H4 class="logg">Den 16 april 2016</H4>
+GPIO port kan kontrolleras genom websocket.
+<hr>
+<H4 class="logg">Den 13 april 2016</H4>
+Bytt ut uwsgi mot gunicorn för att kunna arbeta med websockets framgent.
+<hr>
+<H4 class="logg">Den 8 april 2016</H4>
+Backup på minneskort utfört på den andra partitionen, klockan 8:12.
+Solcell urkopplad klockan 15:07 för test av batterikapacitet, förväntas pågå i drygt en vecka.
+<hr>
+<H4 class="logg">Den 5 april 2016</H4>
+Ersatt 5V regulatorn LM2596 mot Pololu D24V5F5 klockan 15:24.
+<hr>
+<H4 class="logg">Den 4 april 2016</H4>
+Tunnfilmssolcellen på 6W har bytts ut mot en polykristalin kiselpanel på 30W, panel monterad vid östliga hörnet på södervägg. Panelens lutning är satt till 7&deg; mätt från lodplanet.
+<hr>
+<H4 class="logg">Den 3 april 2016</H4>
+Bugg i gnuplotscript ger oändlig regresionslop och dator slutar göra resterande sensoravläsningar. Orsakat av att gnuplot inte kan göra regression på en datamängd bestående av alla samma värden. Ändrat så att sensoravläsningarna görs sekvensiellt efter varandra med samma systemd script, detta undviker konkuerns om cpu'n. Dator drar nu 1.0W.
+<hr>
+<H4 class="logg">Den 2 april 2016</H4>
+Backup på minneskort utfört, båda partitionerna. Bytt ned från 32GB kort till 8GB kort.
+<hr>
+<H4 class="logg">Den 1 april 2016</H4>
+Monterat in strömmätare (INA-219) för att mäta laddström och förbrukning samt en ljusmätare (TSL-2591).
+<hr>
+<H4 class="logg">Den 29 mars 2016</H4>
+Optimerat strömförbrukningen på datorn genom att byta ut wifi-dongeln som var dlink dwa-127 mot en neatgear wma1000m samt slagit av hdmi funktionen på datorn. Dessa åtgärder sparar 20% energi. Datorn drar nu 1.1W.
+<hr>
+<H4 class="logg">Den 28 mars 2016</H4>
+Flyttat över till solcellsdrift. Batteri på 18Ah, 6W tunnfilmssolcell, PWM laddregulator samt 12V-5V buck regulator LM2596 används för ändamålet.
+<hr>
+<H4 class="logg">Den 23 februari 2016</H4>
+Undersökt om programkoden är felaktig och påverkar fuktighetsavläsningen, koden stämmer exakt med bosh kodförslag. Databladet för sensorn visar att fuktighet med minusgrader inte skall vara nått problem. Har även provat torka sensorn men fuktigheten går tillbaks till 100% ganska omgående.
+<hr>
+<H4 class="logg">Den 13 december 2015</H4>
+Luftfuktigheten ligger högre än andra mätares värden, går i bott till 100% blir kvar där.
+<hr>
+<H4 class="logg">Den 2 december 2015</H4>
+Luftfuktigheten går mot 100% Detta fick regresionen i gnuplot att krascha. Denna  klarar inte av att göra regresion på en datamängd som bara består av exakt samma värden. Löste detta genom att manipulera mätdatan så att vid 100% gör den varannan gång så att värdet 99,5% sparas istället för 100%.
+<hr>
+<H4 class="logg">Den 6 november 2015</H4>
+Raspberry A+ med BME-280 sensor används för vädermätning. Uppkopplad på nätet med wifi dongel dwa-127. Mjukvara är flask. Ibland ger sensorn fel mätvärden, dessa sollas bort i mjukvaran.
+{% endblock %}
+

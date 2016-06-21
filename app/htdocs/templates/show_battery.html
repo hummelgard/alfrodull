@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+<H2>Batteridata: {{ documentdata.clock|safe }} </H2>
+
+<h3>laddström: {{ documentdata.current }} (mA) {{ documentdata.currentTrend|safe }}</h3> 
+<h3>batterispänning: {{ documentdata.voltage }} (V) {{ documentdata.voltageTrend|safe }}</h3>
+<h3>effektproduktion: {{ documentdata.power }} (W)</h3>
+<h3>ljusintensitet: {{ documentdata.lightLux }} (lux)</h3>
+<h3>vid solcell (beräknad): {{ documentdata.cal_lightLux }} (lux)</h3>
+<h3>elkraft just nu och prognos för fem dagar framåt:</h3>
+<div>{{ documentdata.lightLuxIcon|safe }}&nbsp;{{ documentdata.prognosIcon|safe }}
+<br style="clear:both">
+<a href="http://www.yr.no/place/Sweden/V%C3%A4sternorrland/Ortsj%C3%B6n/long.html" target="_blank">
+(Vêrvarsel frå Yr levert av Meteorologisk institutt og NRK)</a>
+</div>
+<hr>
+<h2>Senaste 6h</h2>
+<img src={{ url_for('static', filename='currentPlot1h.png') }} alt="strömgraf" height="200"
+width="310">
+<img src={{ url_for('static', filename='voltagePlot1h.png') }} alt="spänningsgraf" height="200"
+width="310">
+<img src={{ url_for('static', filename='sunlightPlot1h.png') }} alt="ljusintensitetgraf" height="200"
+width="310">
+<hr>
+<H2>Långtidsmätdata</H2>
+ <img src={{ url_for('static', filename='powerPlot.png') }} alt="effektgraf" height="300"
+width="950">
+ <img src={{ url_for('static', filename='currentPlot.png') }} alt="strömgraf" height="300"
+width="950">
+ <img src={{ url_for('static', filename='voltagePlot.png') }} alt="spänningsgraf" height="300"
+width="950">
+ <img src={{ url_for('static', filename='sunlightPlot.png') }} alt="ljusintensitetgraf" height="300"
+width="950">
+{% endblock %}
+

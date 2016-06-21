@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block body %}
+<H2>Bakgrund</H2>
+Målet med denna server är att prova ut tre saker: interaktion mellan webb och sensorer, prestanda och möjligheter med små datorer såsom raspberry samt system som genererar sin egen energi, solcell i detta fallet.
+<hr>
+<H2>Hårdvara som används</H2>
+Den dator som används är en raspberry pi A+ och till denna olika Sensorer kopplade samt en usb-wifi dongle.
+All komminikation mellan dator och sensorer sker via I2C. Datorn strömförsörjs med hjälp av batteri och solceller.
+<div>
+<img class=border src={{ url_for('static', filename='raspberry6.jpg') }} alt="raspberry pi being used" height="253"
+width="450"></div>
+<em>Raspberrydatorn där den vänstra grova vita sladden är I2C interfacet som går ut till vädersensor och ljussensor på utsidan huset. Till höger om datorn finns ett kopplingsdäck där en 5V regulator, ett relä och en strömmätare sitter.</em><br><br>
+<hr>
+<div>
+Solcellen är på 30W av polykristalint kisel med storleken 51x51cm och upp till 1.7A vid maxeffekt, ursprungligen Kina tillverkad. Den är placerad på söderhusvägg med en vinkel på 7&deg; från lodplanet räknat. Detta motsvarar ungefär den högsta solhöjd på himlen som solen beräknas nå under den mörkaste vintermånaden, dvs optimerat för att ge bäst effekt då den behövs som mest. 
+
+Brytpunkten då solcellen ger lika mycket ström som datorn förbrukar ligger runt 2500 lux (ca 200 lux på ljussensor), vilket motsvarar molnligt väder.
+Tidigare provades en solcellen av tunnfilmstyp av enklare modell med storlek på 53 x 36 cm och märkeffekt på 6W men med den effekten orkar inte solcellen driva datorn dygnet runt på de få soltimmar som den genererar ström.<div>
+
+<img class=border src={{ url_for('static', filename='solcell30W.jpg') }} alt="solarcell 30W" height="220"
+width="350"></div>
+<em>En 30W polykristalin solcell.</em><br><br>
+<div>
+Batteriet är bly-syra 12 Volt, 18Ah, underhållsfrimodell. Bör räcka sex dagar till 50% urladdning, hela datorsystemet drar ca 64mA på 12V sidan mät och färväntad livslängd med den urladdningsnivån är 600 cykler. Storlek 181x167x76 mm, inre resistans (1kHz) &lt; 12m&#8486;, självurladdning 5% på en månad, 10% 3 månader och 19% vid 6 månader, alla data kommer från datablad. 
+<div>
+
+<img class=border src={{ url_for('static', filename='batteri.jpg') }} alt="18Ah battery" height="220"
+width="220"></div>
+<em>Batteriet som används är på 18 Ah, 12V, bör räcka sex dagar till 50% urladdning.</em><br><br>
+<div>
+<div>
+Tidigare användes en laddregulatorn av fabrikat Sunload TPS-545, med förbrukning på 84mW enligt tillverkaren. Det byttes ut mot ett vanligt relä och därefter till det nuvarande bistabila reläet, detta drar noll ström. När reläet ändrar läge drar det ström men det är bara just vid själva lägesväxlingen och när reläet bytt läge klart så återgår det till att dra noll ström igen. Reläet kopplar in/ur solcellen och på så sätt skyddas batteriet mot överladdning. Batteriövervakningen görs av datorn. Det gröna kretskortet som finns i nästa bild är regulatorn som matar 5V till raspberrydatorn, byggd kring Texas Instruments TPS55340 utav Pololu.
+<div>
+
+<img class=border src={{ url_for('static', filename='relay2.jpg') }} alt="solcellsrelä" height="220"
+width="220"></div>
+<em>Enkelt bistabilt relä somanvänds för att koppla i/ur solcellen.</em><br><br>
+<!--Laddregulatorn är märkt för strömmar upp till 7A, oklart hur den fungerar men man kan utesluta MPPT teknik, fabrikat Sunload TPS-545, med förbrukning på 84mW enligt tillverkaren. Det gröna kretskortet som finns i nästa bild är regulatorn som matar 5V till raspberrydatorn, byggd kring Texas Instruments TPS55340 utav Pololu.
+<div>
+
+<img class=border src={{ url_for('static', filename='regulator.jpg') }} alt="charging regulator" height="220"
+width="220"></div>
+<em>Laddregulator, den kommer från Kina fabrikat Sunload TPS-545.</em><br><br>-->
+<img class=border src={{ url_for('static', filename='regulator-D24V5F5.jpg') }} alt="5V buck regulator" height="220"
+width="220"></div>
+<em>Buck regulator 12-5V som matar datorn, Pololu D24V5F5, peak-performance vid 200-300 mA. Denna ersätter den tidigare använda LM2596.</em><br><br>
+
+
+<hr>
+<div>
+Själva vädersensorn är väldigt noggrann för lufttryck med en noggrannhet på 1.0hPa. Luftfuktighet med 3% noggrannhet och temperatur med 1&deg; noggranhet.
+<div>
+
+<img class=border src={{ url_for('static', filename='bme280.jpg') }} alt="weather sensor used, bme280" height="220"
+width="220"></div>
+<em>Vädersensorn, BME-280 från bosch här på en breakout från adafruit.</em><br><br>
+
+<div>
+Strömmätaren mäter spänningsfallet över ett shuntmotstånd och bestämmer strömmen i kretsen utifrån detta. Sensorn mäter även polspänningen på batteriet. IC-kretsen har ett innbyggt i2c interface som gör kommunikationen mellan sensorn och datorn enkel. Mäter spänningen på batteriet med 4mV noggrannhet och strömmen på mA nivå. 
+<div>
+<img class=border src={{ url_for('static', filename='ina219.jpg') }} alt="currentmeter, INA-219" height="220"
+width="220"></div>
+<em>Strömmätaren, INA-219 från texas instruments här på en breakout från adafruit.</em><br><br>
+<div>
+Ljusmätaren mäter både IR strålning och totalt infallande strålning, den har också extremt stort omfång från 88.000 lux ned till microlux området. Sensorn är placerad under takfoten på huset och vänd så det pekar nedåt mot marken. Sensorn mäter därför reflekterat ljus ifrån omgivningen och inte i riktning direkt mot solen. En solig sommardag ger i ljusintensitet ca 100.000 lux i solriktningen men sensorn mäter på grund av sin placering då ca 2500 lux.
+<div>
+<img class=border src={{ url_for('static', filename='tsl2591.jpg') }} alt="lightmeter, TSL-2591" height="220"
+width="220"></div>
+<em>ljusmätaren, TSL-2591 från ams här på en breakout från adafruit.</em><br><br>
+<HR>
+<H2>Mjukvara som används</H2>
+Den mjukvara som används är arch-linux med flask mikroramverk baserat på python, Werkzeug och Jinja2.
+Det är flask som genererar alla de dynamiska bitarna i websidorna. Som webserver används nginx och kopplingen till flask sköts med gunicorn.
+Graferna generas av gnuplot, medans avläsningen av sensorn görs direkt i python i ett script som går på intervall med hjälp av systemd.
+{% endblock %}
+

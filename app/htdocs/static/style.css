@@ -1,0 +1,77 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:300,400);
+@import url(https://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,600);
+
+body            { font-family: 'Crimson Text', serif; background: #eee; }
+a               { font-family: 'Crimson Text', serif; font-weight: 600;color: #009e60; }
+h1, h2          { font-family: 'Roboto Mono',sans-serif; font-weight: 300; margin: 0; ;color: #009e60; }}
+h1              { border-bottom: 2px solid #eee; }
+h2              { font-size: 1.2em; }
+h3		{ font-size: 1.0em; font-family: 'Roboto Mono',sans-serif; font-weight: 400;}
+footer, .footer { font-family: 'Roboto Mono', sans-serif; font-weight: 300;}
+th, td          { text-align: right;} 
+td.la,th.la     { text-align:left;}
+
+.page           { margin: 2em auto; width: 1000px; border: 5px solid #ccc;
+                  padding: 0.8em; background: white; }
+.panel          { border: 5px solid #ccc;
+                  padding: 0em; background: white; font-family: 'Crimson Text', serif; font-weight: 600;font-size: 1.0em;}
+.panelelement   {font-family: 'Roboto Mono', sans-serif; font-weight: 300;font-size: 1.5em;}
+
+.entries        { list-style: none; margin: 0; padding: 0; }
+.entries li     { margin: 0.8em 1.2em; }
+.entries li h2  { margin-left: -1em; }
+.add-entry      { font-size: 0.9em; border-bottom: 1px solid #ccc; }
+.add-entry dl   { font-weight: bold; }
+.metanav        { text-align: right; font-size: 0.8em; padding: 0.3em;
+                  margin-bottom: 1em; background: #fafafa; }
+.flash          { background: #30dea0; padding: 0.5em;
+                  border: 1px solid #009e60; 
+                  color: white;
+                  font-family: 'Roboto Mono',sans-serif;}
+.error          { background: #f0d6d6; padding: 0.5em; 
+                  border: 1px solid black; 
+                  color: black;
+                  font-family: 'Roboto Mono',sans-serif;}
+.trend_rising   { background: #f04040;}
+.trend_dropping { background: #00d6d6;}
+.trend_steady   { background: #d6d6d6;}
+.trend_charging    { background: #40f040;}
+.trend_discharging { background: #f04040;}
+.trend_battGOOD { background: #40f040;}
+.trend_battOK   { background: #f0f040;}
+.trend_battLOW  { background: #f04040;}
+.trend_steady   { background: #d6d6d6;}
+.border         { border-width: 5px;
+                  border-style: solid;
+                  border-color: #009e60;
+                }
+H4.logg		{ font-style: italic;}
+img.ICON	{ height:4em;width:4em; padding-top: 0.2em; padding-bottom: 0.0em;; padding-left: 0.2em;; padding-right: 0.2em;}
+.bforecast	{ height:6em;width:6em; padding: 0em; margin: 0.1em;
+                  border-width: 2px;
+                  border-style: solid;
+                  border-color: #ccc;
+                  text-align: center;
+                  float:left;}
+
+.server_log	{ background: #f3faf4;
+                  border: 1px solid #009e60; 
+                  color: black;
+                  font-weight: 300;
+                  font-family: 'Roboto Mono',sans-serif;}
+.relaybutton 	{ 
+  		  font-family: 'Roboto Mono', sans-serif;
+                  width:14ch;
+                  color: white;
+  		  background-color: #909090;
+  		  font-weight: 400;
+                  font-size: 1em;
+                  padding: 0.3em;
+                  margin: 0.3em;}
+
+.on 		{ background-color: #40f040;}
+.off 		{ background-color: #f04040;}
+
+.relaybutton:hover{
+  		cursor: pointer;}
+

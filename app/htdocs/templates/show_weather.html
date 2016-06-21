@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+<H2>Väderdata: {{ documentdata.clock|safe }}</H2>
+<h3> temperatur: {{ documentdata.temperature }} (&deg;C) {{ documentdata.temperatureTrend|safe }}</h3> 
+<h3>lufttryck: {{ documentdata.pressure }} (hPa) {{ documentdata.pressureTrend|safe }}</h3>
+<h3>relativ fuktighet: {{ documentdata.humidity }} (%) {{ documentdata.humidityTrend|safe }}</h3>
+<H3>daggpunkt: {{ documentdata.dewpoint }} (&deg;C) {{ documentdata.dewTrend|safe }}</h3>
+<h3>prognos för fem dagar framåt:</h3>
+<div>{{ documentdata.prognosIcon|safe }}<br style="clear:both">
+<a href="http://www.yr.no/place/Sweden/V%C3%A4sternorrland/Ortsj%C3%B6n/long.html" target="_blank">
+(Vêrvarsel frå Yr levert av Meteorologisk institutt og NRK)</a>
+</div>
+<hr>
+<h2>Senaste 5h</h2>
+<img src={{ url_for('static', filename='temperaturePlot1h.png') }} alt="temperaturgraf" height="200"
+width="310">
+<img src={{ url_for('static', filename='humidityPlot1h.png') }} alt="luftfuktighetsgraf" height="200"
+width="310">
+<img src={{ url_for('static', filename='pressurePlot1h.png') }} alt="lufttrycksgraf" height="200"
+width="310">
+<hr>
+<H2>Långtidsmätdata</H2>
+ <img src={{ url_for('static', filename='temperaturePlot.png') }} alt="temperaturgraf" height="300"
+width="950">
+ <img src={{ url_for('static', filename='humidityPlot.png') }} alt="luftfuktighetsgraf" height="300"
+width="950">
+ <img src={{ url_for('static', filename='pressurePlot.png') }} alt="lufttrycksgraf" height="300"
+width="950">
+{% endblock %}
+

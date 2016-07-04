@@ -31,11 +31,11 @@
 
 	    });
             socket.on('gpio status', function(msg) {
-                if(msg.data == "22latch"){
+                if(msg.data == "17off"){
                   document.getElementById("solcell").className="relaybutton on";  
 		  document.getElementById("solcell").value="inkopplad";
 		}               
-                if(msg.data == "27latch"){
+                if(msg.data == "17on"){
                   document.getElementById("solcell").className="relaybutton off"; 
 		  document.getElementById("solcell").value="urkopplad";
 		} 

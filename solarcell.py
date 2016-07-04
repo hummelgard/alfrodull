@@ -17,7 +17,7 @@ batteryVoltage = float(lastLogData[5].rstrip())
 
 if(batteryVoltage > 0 and batteryVoltage < 20):
     maxVoltage = 14.2
-    startChargingVoltage = 12.40
+    startChargingVoltage = 12.00
 
     # turning on relay disconnects solar cell and vice verse
     charging = bool(settings['solarcell'])

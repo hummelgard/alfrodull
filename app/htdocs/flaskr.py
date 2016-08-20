@@ -302,7 +302,7 @@ def change_settings(message):
 
         if(settings['solarcell'] == 1):
             gpio17 = open('/sys/class/gpio/gpio17/value','wb',0)
-            gpio17.write(b'1')
+            gpio17.write(b'0')
             gpio17.close()
             
             # below use for latch-relay
@@ -314,11 +314,11 @@ def change_settings(message):
             settings['solarcell'] = 0
             if(message['user'][0:6]=="klient"):
                 emit('server reply', {'data':clock_str+message['user']+":solcell urkopplad"}, broadcast=True)
-            emit('gpio status', {'data': '17on'}, broadcast=True)
+            emit('gpio status', {'data': '17off'}, broadcast=True)
             # emit('gpio status', {'data': '27latch'}, broadcast=True) # use for latch-relay
         else:
             gpio17 = open('/sys/class/gpio/gpio17/value','wb',0)
-            gpio17.write(b'0')
+            gpio17.write(b'1')
             gpio17.close()
 
             # below use for latch-relay
@@ -330,7 +330,7 @@ def change_settings(message):
             settings['solarcell'] = 1
             if(message['user'][0:6]=="klient"):
                 emit('server reply', {'data':clock_str+message['user']+":solcell inkopplad"}, broadcast=True)
-            emit('gpio status', {'data': '17off'}, broadcast=True)
+            emit('gpio status', {'data': '17on'}, broadcast=True)
             #emit('gpio status', {'data': '22latch'}, broadcast=True) # use for latch-relay
 
     with open('/srv/http/settings.txt','w') as file:
@@ -371,10 +371,10 @@ def test_connect():
         emit('gpio status', {'data': 'manualoff'}, broadcast=True)
    
     if(settings['solarcell'] == 1):
-        emit('gpio status', {'data': '17off'}, broadcast=True)
+        emit('gpio status', {'data': '17on'}, broadcast=True)
         #emit('gpio status', {'data': '22latch'}, broadcast=True) # use for latch-relay
     else:
-        emit('gpio status', {'data': '17on'}, broadcast=True)
+        emit('gpio status', {'data': '17off'}, broadcast=True)
         #emit('gpio status', {'data': '27latch'}, broadcast=True) # use for latch-relay
 
 

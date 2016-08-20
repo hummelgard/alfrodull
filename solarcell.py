@@ -6,6 +6,10 @@ from socketIO_client import SocketIO
 lastLogData = os.popen(
       "tail -n 1 /srv/http/app/htdocs/static/batterydata.txt").read().split(";")
 
+lastSunlightData = os.popen(
+      "tail -n 1 /srv/http/app/htdocs/static/sunlightdata.txt").read().split(";")
+
+
 settings = {}
 with open('/srv/http/settings.txt', 'r') as file:   
     for setting in file:
@@ -14,15 +18,16 @@ with open('/srv/http/settings.txt', 'r') as file:
 file.close()
 
 batteryVoltage = float(lastLogData[5].rstrip())
+sunlightIntensity = float(lastSunlightData[4].rstrip())
 
 if(batteryVoltage > 0 and batteryVoltage < 20):
     maxVoltage = 14.2
-    startChargingVoltage = 12.00
+    startChargingVoltage = 12.40
 
-    # turning on relay disconnects solar cell and vice verse
+    # turning on relay connects solar cell and vice verse
     charging = bool(settings['solarcell'])
 
-    print("battery voltage:",batteryVoltage,"V","charging:",charging,"manualmode:",bool(settings['manual']))
+    print("battery voltage:",batteryVoltage,"V","charging:",charging,"sunlight:",sunlightIntensity,"manualmode:",bool(settings['manual']))
     socketIO = SocketIO('localhost',8000)
     #If voltage above critical level, stop charging!
     if(batteryVoltage > maxVoltage and charging):
@@ -30,9 +35,12 @@ if(batteryVoltage > 0 and batteryVoltage < 20):
         with SocketIO('localhost', 8000,) as socketIO:
             socketIO.emit('change settings', {'data': "solarcell-latch", 'user': "server@batterymonitor", 'note':"Solcell urkopplad, batteriet 100%"})
 
-    elif(batteryVoltage <= startChargingVoltage and not charging and settings['manual']==False):
+    elif(batteryVoltage <= startChargingVoltage and not charging and sunlightIntensity > 200 and settings['manual']==False):
 
         with SocketIO('localhost', 8000,) as socketIO:
             socketIO.emit('change settings', {'data': "solarcell-latch", 'user': "server@batterymonitor", 'note':"Solcell inkopplad"})
 
+    elif( sunlightIntensity < 200 and settings['manual']==False):
+        with SocketIO('localhost', 8000,) as socketIO:
+            socketIO.emit('change settings', {'data': "solarcell-latch", 'user': "server@batterymonitor", 'note':"Solcell urkopplad, inget solsken"})
 

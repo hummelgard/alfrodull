@@ -35,12 +35,12 @@ if(batteryVoltage > 0 and batteryVoltage < 20):
         with SocketIO('localhost', 8000,) as socketIO:
             socketIO.emit('change settings', {'data': "solarcell-latch", 'user': "server@batterymonitor", 'note':"Solcell urkopplad, batteriet 100%"})
 
-    elif(batteryVoltage <= startChargingVoltage and not charging and sunlightIntensity > 200 and settings['manual']==False):
+    elif(batteryVoltage <= startChargingVoltage and not charging and sunlightIntensity > 400 and settings['manual']==False):
 
         with SocketIO('localhost', 8000,) as socketIO:
             socketIO.emit('change settings', {'data': "solarcell-latch", 'user': "server@batterymonitor", 'note':"Solcell inkopplad"})
 
-    elif( sunlightIntensity < 200 and settings['manual']==False):
+    elif( sunlightIntensity < 100 and charging and settings['manual']==False):
         with SocketIO('localhost', 8000,) as socketIO:
             socketIO.emit('change settings', {'data': "solarcell-latch", 'user': "server@batterymonitor", 'note':"Solcell urkopplad, inget solsken"})
 

@@ -1,6 +1,7 @@
 # all the imports
 import sqlite3, time, locale
 from os import popen
+from datetime import datetime
 from math import log10,floor
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
@@ -90,7 +91,12 @@ def projektredovisning():
 def show_battery():
 
     locale.setlocale(locale.LC_ALL,"sv_SE.utf8")
-    clock_str = time.strftime("%a, %-d %b %H:%M:%S").encode('ascii', 'xmlcharrefreplace').decode('utf8')
+
+    lastLogData = popen(
+      "tail -n 1 /srv/http/app/htdocs/static/batterydata.txt").read().split(";")
+    date_object = datetime.strptime(lastLogData[2], '%Y-%m-%d_%H:%M:%S')
+    clock_str = date_object.strftime("%a, %-d %b %H:%M:%S").encode('ascii', 'xmlcharrefreplace').decode('utf8')
+    #clock_str = time.strftime("%a, %-d %b %H:%M:%S").encode('ascii', 'xmlcharrefreplace').decode('utf8')
 
     logdata = popen("tail -n 1 /srv/http/app/htdocs/static/batterydata.txt").read().split(";")
     current = -float(logdata[4])
@@ -180,7 +186,11 @@ def show_battery():
 def show_weather():
 
     locale.setlocale(locale.LC_ALL,"sv_SE.utf8")
-    clock_str = time.strftime("%a, %-d %b %H:%M:%S").encode('ascii', 'xmlcharrefreplace').decode('utf8')
+    
+    lastLogData = popen(
+      "tail -n 1 /srv/http/app/htdocs/static/weatherdata.txt").read().split(";")
+    date_object = datetime.strptime(lastLogData[2], '%Y-%m-%d_%H:%M:%S')
+    clock_str = date_object.strftime("%a, %-d %b %H:%M:%S").encode('ascii', 'xmlcharrefreplace').decode('utf8')
 
     logdata = popen("tail -n 1 /srv/http/app/htdocs/static/weatherdata.txt").read().split(";")
     temperature = float(logdata[4])

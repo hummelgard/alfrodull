@@ -9,7 +9,7 @@ All komminikation mellan dator och sensorer sker via I2C. Datorn strömförsörj
 <div>
 <img class=border src={{ url_for('static', filename='raspberry6.jpg') }} alt="raspberry pi being used" height="253"
 width="450"></div>
-<em>Raspberrydatorn där den vänstra grova vita sladden är I2C interfacet som går ut till vädersensor och ljussensor på utsidan huset. Till höger om datorn finns ett kopplingsdäck där en 5V regulator, ett relä och en strömmätare sitter.</em><br><br>
+<em>Raspberrydatorn där den vänstra grova vita sladden är I2C interfacet som går ut till vädersensor och ljussensor på utsidan huset. Till höger om datorn finns ett kopplingsdäck där en 5V regulator, ett relä (ej aktuellt relä på bild) och en strömmätare sitter.</em><br><br>
 <hr>
 <div>
 Solcellen är på 30W av polykristalint kisel med storleken 51x51cm och upp till 1.7A vid maxeffekt, ursprungligen Kina tillverkad. Den är placerad på söderhusvägg med en vinkel på 7&deg; från lodplanet räknat. Detta motsvarar ungefär den högsta solhöjd på himlen som solen beräknas nå under den mörkaste vintermånaden, dvs optimerat för att ge bäst effekt då den behövs som mest. 
@@ -29,12 +29,12 @@ width="220"></div>
 <em>Batteriet som används är på 18 Ah, 12V, bör räcka sex dagar till 50% urladdning.</em><br><br>
 <div>
 <div>
-Tidigare användes en laddregulatorn av fabrikat Sunload TPS-545, med förbrukning på 84mW enligt tillverkaren. Det byttes ut mot ett vanligt relä och därefter till det nuvarande bistabila reläet, detta drar noll ström. När reläet ändrar läge drar det ström men det är bara just vid själva lägesväxlingen och när reläet bytt läge klart så återgår det till att dra noll ström igen. Reläet kopplar in/ur solcellen och på så sätt skyddas batteriet mot överladdning. Batteriövervakningen görs av datorn. Det gröna kretskortet som finns i nästa bild är regulatorn som matar 5V till raspberrydatorn, byggd kring Texas Instruments TPS55340 utav Pololu.
+Tidigare användes en laddregulatorn av fabrikat Sunload TPS-545, med förbrukning på 84mW enligt tillverkaren. Det byttes ut mot ett vanligt relä. När reläet ändrar läge och kopplar in solcellen drar det ström men det är bara under solcellsladdningen. Reläet kopplar in/ur solcellen och på så sätt skyddas batteriet mot överladdning. Batteriövervakningen görs av datorn. Det gröna kretskortet som finns i nästa bild är regulatorn som matar 5V till raspberrydatorn, byggd kring Texas Instruments TPS55340 utav Pololu.
 <div>
 
-<img class=border src={{ url_for('static', filename='relay2.jpg') }} alt="solcellsrelä" height="220"
+<img class=border src={{ url_for('static', filename='relay.jpg') }} alt="solcellsrelä" height="220"
 width="220"></div>
-<em>Enkelt bistabilt relä somanvänds för att koppla i/ur solcellen.</em><br><br>
+<em>Enkelt relä som används för att koppla i/ur solcellen.</em><br><br>
 <!--Laddregulatorn är märkt för strömmar upp till 7A, oklart hur den fungerar men man kan utesluta MPPT teknik, fabrikat Sunload TPS-545, med förbrukning på 84mW enligt tillverkaren. Det gröna kretskortet som finns i nästa bild är regulatorn som matar 5V till raspberrydatorn, byggd kring Texas Instruments TPS55340 utav Pololu.
 <div>
 

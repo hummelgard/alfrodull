@@ -251,7 +251,7 @@ while True:
                locale_date.strftime(fmt) +
                ";{0:.2f};{1:.2f};{2:.2f}\n".format(temperature, humidity, pressure) )
        f.close()
-
+       time.sleep(20)
 
 # DEW POINT CALCULATION
 #(1) Saturation Vapor Pressure = ESGG(T)
